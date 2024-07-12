@@ -443,8 +443,8 @@ window.fg.module('mouseEvents', function (exports, fg) {
     // True if an event must be handled by the addon, otherwise false. Added by BO 20240712
   function shouldHandleEvent (event) {
     return (
-      //If disableOnAlt or disableOnShift is not checked, when Alt or Shift is triggered, it will be true.
-      (!settings.disableOnAlt && event.altKey) || (!settings.disableOnShift && event.shiftKey)
+      //If disableOnAlt or disableOnShift is not checked, when Alt or Shift is triggered, or if Ctrl is triggered, it will be true.
+      (!settings.disableOnAlt && event.altKey) || (!settings.disableOnShift && event.shiftKey) || (event.ctrlKey)
     );
   }
 
