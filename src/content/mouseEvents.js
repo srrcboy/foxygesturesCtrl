@@ -249,7 +249,7 @@ window.fg.module('mouseEvents', function (exports, fg) {
   function onMouseDown (event) {
     // Ignore untrusted events, events while Alt/Shift are pressed, and events that need not be handled.
     if (shouldIgnoreEvent(event) || ignoreButtonNotUsedByGesture(event)) { return; }
-    if (shouldHandleEvent(event) ) { return; } //Added by BO
+    if (!shouldHandleEvent(event) ) { return; } //Added by BO
 
     // Record the original mouse event.
     state.mouseDown = event;
@@ -272,7 +272,7 @@ window.fg.module('mouseEvents', function (exports, fg) {
   function onMouseUp (event) {
     // Ignore untrusted events, events while Alt/Shift are pressed, and events that need not be handled.
     if (shouldIgnoreEvent(event) || ignoreButtonNotUsedByGesture(event)) { return; }
-  if (shouldHandleEvent(event) ) { return; } //Added by BO
+  if (!shouldHandleEvent(event) ) { return; } //Added by BO
     
     // Prevent handling of mouseup events during a gesture.
     if (state.gestureState &&
@@ -294,7 +294,7 @@ window.fg.module('mouseEvents', function (exports, fg) {
   function onMouseMove (event) {
     // Ignore untrusted events and events when Alt is pressed.
     if (shouldIgnoreEvent(event)) { return; }
-    if (shouldHandleEvent(event) ) { return; } //Added by BO
+    if (!shouldHandleEvent(event) ) { return; } //Added by BO
 
     // Only handle mousemove events during a gesture.
     if (state.gestureState) {
@@ -321,7 +321,7 @@ window.fg.module('mouseEvents', function (exports, fg) {
   function onWheel (event) {
     // Ignore untrusted events and events when Alt is pressed.
     if (shouldIgnoreEvent(event)) { return; }
-  if (shouldHandleEvent(event) ) { return; } //Added by BO
+  if (!shouldHandleEvent(event) ) { return; } //Added by BO
     
     // Only handle wheel events (if enabled) during a gesture.
     if (settings.wheelGestures && state.gestureState) {
@@ -341,7 +341,7 @@ window.fg.module('mouseEvents', function (exports, fg) {
   function onClick (event) {
     // Ignore untrusted events and events when Alt is pressed.
     if (shouldIgnoreEvent(event)) { return; }
-  if (shouldHandleEvent(event) ) { return; } //Added by BO
+  if (!shouldHandleEvent(event) ) { return; } //Added by BO
     
     // Prevent default actions for all clicks on any button during a gesture.
     if (state.preventClick ||
@@ -356,7 +356,7 @@ window.fg.module('mouseEvents', function (exports, fg) {
   function onDblClick (event) {
     // Ignore untrusted events and events when Alt is pressed.
     if (shouldIgnoreEvent(event)) { return; }
-      if (shouldHandleEvent(event) ) { return; } //Added by BO
+      if (!shouldHandleEvent(event) ) { return; } //Added by BO
 
     // Prevent double clicks during chord gestures. These sometimes happen due to the initial mousedown "leaking"
     // since a gesture hasn't started. This is really annoying if it takes a HTML5 video to fullscreen.
@@ -447,7 +447,7 @@ window.fg.module('mouseEvents', function (exports, fg) {
       (!settings.disableOnAlt && event.altKey) || (!settings.disableOnShift && event.shiftKey)
     );
   }
-  if ( !shouldHandleEvent(event) ) { return; } //Added by BO
+
 
   // True if the event does not need to be handled because no enabled gesture type can handle it, otherwise false.
   function ignoreButtonNotUsedByGesture (event) {
